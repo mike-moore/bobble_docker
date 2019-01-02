@@ -17,10 +17,9 @@ Launch the simulator
 ```sh
 git clone https://github.com/super-owesome/bobble_docker.git
 cd bobble_docker
-docker build -t bobble_sim_image .
+docker pull superowesome/bobble-sim:latest
 ./run_bobble_sim.bash
 ```
-
 
 Consult the [bobble_controllers](https://github.com/super-owesome/bobble_controllers) repository for instructions
 on getting started with the simulation.
