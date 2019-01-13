@@ -23,7 +23,19 @@ RUN cd $BOBBLE_WS/src && \
 
 RUN cd $BOBBLE_WS && \
     source /opt/ros/melodic/setup.bash && \
-    catkin init ; catkin build
+    catkin init ; catkin config --install; catkin build
+
+# Required python packages for analysis
+RUN \
+  apt-get install -y python-pip && \
+  pip install matplotlib==2.0.2 && \
+  pip install numpy && \
+  pip install scipy && \
+  pip install jupyter && \
+  pip install seaborn && \
+  pip install pandas && \
+  pip install bokeh && \
+  pip install rosbag_pandas
 
 EXPOSE 11345
 
