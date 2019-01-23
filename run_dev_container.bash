@@ -12,12 +12,13 @@ then
 fi
 
 docker run -it \
-    --name="bobble_sim_container" \
+    --name="bobble_dev_container" \
     --env="DISPLAY=$DISPLAY" \
     --env="QT_X11_NO_MITSHM=1" \
     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
     --env="XAUTHORITY=$XAUTH" \
     --volume="$XAUTH:$XAUTH" \
     --runtime=nvidia \
+    --volume="`pwd`../../..:/bobble_src:rw" \
     superowesome/bobble-sim:latest \
-    roslaunch bobble_controllers run_sim.launch
+    bash

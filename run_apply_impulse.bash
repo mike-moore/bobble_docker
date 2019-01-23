@@ -12,12 +12,7 @@ then
 fi
 
 docker run -it \
-    --name="bobble_sim_container" \
-    --env="DISPLAY=$DISPLAY" \
-    --env="QT_X11_NO_MITSHM=1" \
-    --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
-    --env="XAUTHORITY=$XAUTH" \
-    --volume="$XAUTH:$XAUTH" \
-    --runtime=nvidia \
+    --name="bobble_analysis_container" \
+    --volume="`pwd`:/data:rw" \
     superowesome/bobble-sim:latest \
-    roslaunch bobble_controllers run_sim.launch
+    roslaunch bobble_controllers apply_impulse_force.launch impulse:=-1000 out_file:=/data/impulse_test gui:=false

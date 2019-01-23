@@ -5,7 +5,7 @@ ENV NVIDIA_VISIBLE_DEVICES \
 ENV NVIDIA_DRIVER_CAPABILITIES \
     ${NVIDIA_DRIVER_CAPABILITIES:+$NVIDIA_DRIVER_CAPABILITIES,}graphics
 
-RUN apt-get update && apt-get install -y apt-utils build-essential psmisc
+RUN apt-get update && apt-get install -y apt-utils build-essential psmisc vim-gtk
 
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
@@ -13,17 +13,23 @@ RUN apt-get update && apt-get install -q -y python-catkin-tools
 
 RUN apt-get update && apt-get install -q -y ros-melodic-hector-gazebo-plugins
 
-ENV BOBBLE_WS=/bobble_ws
+# Install git lfs. Necessary in order to properly clone bobble_description
+RUN echo 'deb http://http.debian.net/debian wheezy-backports main' > /etc/apt/sources.list.d/wheezy-backports-main.list
+RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
+RUN apt-get install -q -y git-lfs
+RUN git lfs install
 
-RUN mkdir -p $BOBBLE_WS/src
+ENV BOBBLE_WS=/bobble_workspace
 
-RUN cd $BOBBLE_WS/src && \
+RUN source /opt/ros/melodic/setup.bash && \
+    mkdir -p $BOBBLE_WS/src && \
+    cd $BOBBLE_WS/src && \
+    catkin_init_workspace && \
     git clone https://github.com/super-owesome/bobble_controllers.git && \
-    git clone https://github.com/super-owesome/bobble_description.git
-
-RUN cd $BOBBLE_WS && \
-    source /opt/ros/melodic/setup.bash && \
-    catkin init ; catkin config --install; catkin build
+    git clone https://github.com/super-owesome/bobble_description.git && \
+    cd $BOBBLE_WS && \
+    catkin_make && \
+    catkin_make install
 
 # Required python packages for analysis
 RUN \
