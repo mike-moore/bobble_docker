@@ -26,7 +26,7 @@ only requirement.
 Run the simulation with graphics from within a container (master branch version of sim).
 
 ```sh
-docker pull superowesome/bobble-sim:latest
+docker pull superowesome/bobble-sim:stable
 mkdir -p ~/bobble_workspace/src
 cd ~/bobble_workspace/src
 git clone https://github.com/super-owesome/bobble_docker.git
@@ -47,7 +47,7 @@ cd ~/bobble_workspace/src/bobble_docker
 Run the simulation headless from within a container (master branch version of sim).
 
 ```sh
-docker pull superowesome/bobble-sim:latest
+docker pull superowesome/bobble-sim:stable
 git clone https://github.com/super-owesome/bobble_docker.git
 cd bobble_docker
 ./run_apply_impulse.bash
@@ -63,7 +63,7 @@ Follow the steps below to launch a container intended for building the simulatio
 from source.
 
 ```sh
-docker pull superowesome/bobble-sim:latest
+docker pull superowesome/bobble-sim:stable
 mkdir -p ~/bobble_workspace/src
 cd ~/bobble_workspace/src
 git clone https://github.com/super-owesome/bobble_docker.git

@@ -19,5 +19,5 @@ docker run -it \
     --env="XAUTHORITY=$XAUTH" \
     --volume="$XAUTH:$XAUTH" \
     --runtime=nvidia \
-    superowesome/bobble-sim:latest \
+    superowesome/bobble-sim:stable \
     roslaunch bobble_controllers run_sim.launch

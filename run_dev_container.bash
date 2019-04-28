@@ -20,5 +20,5 @@ docker run -it \
     --volume="$XAUTH:$XAUTH" \
     --runtime=nvidia \
     --volume="`pwd`../../..:/bobble_src:rw" \
-    superowesome/bobble-sim:latest \
+    superowesome/bobble-sim:stable \
     bash
