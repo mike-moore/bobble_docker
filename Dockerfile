@@ -41,6 +41,7 @@ RUN \
   pip install seaborn && \
   pip install pandas && \
   pip install bokeh && \
+  pip install vcstool && \
   pip install rosbag_pandas
 
 EXPOSE 11345
